@@ -16,7 +16,10 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'python3 -m pytest'
+                sh '''
+                . venv/bin/activate
+                pytest
+                '''
             }
         }
 
@@ -25,6 +28,5 @@ pipeline {
                 sh 'docker build -t python-app .'
             }
         }
-
     }
 }
